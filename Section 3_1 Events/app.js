@@ -15,6 +15,9 @@ const app = Vue.createApp({
     updateName(e) {
       this.name = e.target.value;
     },
+    submitForm(e) {
+      console.log(e);
+    },
   },
 });
 
