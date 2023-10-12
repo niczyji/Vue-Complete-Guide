@@ -6,6 +6,17 @@ const app = Vue.createApp({
       boxC: false,
     };
   },
+  computed: {
+    boxAClasses() {
+      return { active: this.boxA };
+    },
+    boxBClasses() {
+      return { active: this.boxB };
+    },
+    boxCClasses() {
+      return { active: this.boxC };
+    },
+  },
   methods: {
     isSelected(box) {
       if (box === "A") {
