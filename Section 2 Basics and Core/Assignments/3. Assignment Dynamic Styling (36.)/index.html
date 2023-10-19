@@ -19,12 +19,10 @@
     <section id="assignment">
       <!-- 1) Fetch the user input and use it as a CSS class -->
       <!-- The entered class should be added to the below paragraph -->
-      <input type="text" />
+      <input type="text" @change="getInput($event)" />
       <!-- (available classes: "user1", "user2") -->
-      <p>
-        Style me!
-      </p>
-      <button>Toggle Paragraph</button>
+      <p :class="input1" :class="toggleStyle">Style me!</p>
+      <button @click="toggleVisibleHidden">Toggle Paragraph</button>
       <!-- 2) Use the "visible" and "hidden" classes to show/ hide the above paragraph -->
       <!-- Clicking the button should toggle between the two options -->
 
