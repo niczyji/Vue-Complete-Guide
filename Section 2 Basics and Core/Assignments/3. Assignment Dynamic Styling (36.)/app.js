@@ -1,12 +1,17 @@
 const app = Vue.createApp({
-    data() {
+  data() {
+    return {
+      inputClass: "",
+    };
+  },
+  methods: {
+    appliedClasses() {
       return {
-        inputClass: "",
+        user1: this.inputClass === "user1",
+        user2: this.inputClass === "user2",
       };
     },
-    methods: {
-    },
-  });
-  
-  app.mount("#assignment");
-  
+  },
+});
+
+app.mount("#assignment");
