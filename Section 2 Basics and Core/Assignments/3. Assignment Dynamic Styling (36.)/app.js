@@ -3,6 +3,7 @@ const app = Vue.createApp({
     return {
       inputClass: "",
       isVisible: true,
+      inlineStyling: "",
     };
   },
   methods: {
