@@ -1,29 +1,30 @@
 const app = Vue.createApp({
   data() {
     return {
-      input1: "",
-      visible: true,
+      inputClass: "",
+      isVisible: true,
+      inlineStyling: "",
     };
   },
   methods: {
-    getInput(event) {
-      this.input1 = event.target.value;
-      console.log(this.input1);  // This will print the value to the console
-    },
-    toggleVisibleHidden() {
-      this.visible = !this.visible
-      console.log(this.visible);
+    toggleClasses() {
+      this.isVisible = !this.isVisible;
     },
   },
   computed: {
-    toggleStyle() {
-      if (this.visible == true) {
-        return ".hidden"
-      } else {
-        return ".visible"
-      }
-    }
-  }
+    appliedClasses() {
+      return {
+        user1: this.inputClass === "user1",
+        user2: this.inputClass === "user2",
+      };
+    },
+    visibleClass() {
+      return {
+        visible: this.isVisible,
+        hidden: !this.isVisible,
+      };
+    },
+  },
 });
 
 app.mount("#assignment");
