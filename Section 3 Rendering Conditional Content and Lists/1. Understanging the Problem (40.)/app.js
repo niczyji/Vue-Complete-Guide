@@ -1,8 +1,8 @@
 const app = Vue.createApp({
   data() {
-    return { 
+    return {
       goals: [],
-      inputClass: '',
+      inputClass: "",
     };
   },
   methods: {
@@ -10,7 +10,10 @@ const app = Vue.createApp({
       this.goals.push(this.inputClass);
       console.log(this.goals);
     },
+    removeGoal(index) {
+      this.goals.splice(index, 1);
+    },
   },
 });
 
-app.mount('#user-goals');
+app.mount("#user-goals");
