@@ -15,6 +15,11 @@ const app = Vue.createApp({
       this.isActive = !this.isActive;
     },
   },
+  computed: {
+    buttonText() {
+      return this.isActive ? "Hide List" : "Show List";
+    },
+  },
 });
 
 app.mount("#assignment");
