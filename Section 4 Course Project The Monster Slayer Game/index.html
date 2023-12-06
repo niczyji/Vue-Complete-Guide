@@ -31,14 +31,17 @@
       </section>
       <section id="controls">
         <button @click="attackButton">ATTACK</button>
-        <button>SPECIAL ATTACK</button>
-        <button>HEAL</button>
+        <button @click="specialAttackButton" :disabled="disabledSpecialAttack">SPECIAL ATTACK</button>
+        <button @click="healButton">HEAL</button>
         <button>SURRENDER</button>
       </section>
       <section id="log" class="container">
         <h2>Battle Log</h2>
-        <ul></ul>
-      </section>
+        <ul>
+          <li v-for="logEntry in battleLog">
+            {{ logEntry }}
+          </li>    
+         </section>
     </div>
   </body>
 </html>
