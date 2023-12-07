@@ -9,7 +9,7 @@ const app = Vue.createApp({
   methods: {
     addTask() {
       this.tasks.push(this.inputTask);
-      console.log(this.tasks);
+      console.log(this.tasks, "test");
     },
     toggleButton() {
       this.isActive = !this.isActive;
