@@ -30,11 +30,17 @@
         </div>
       </section>
       <section id="controls">
-        <button @click="attackButton">ATTACK</button>
-        <button @click="specialAttackButton" :disabled="disabledSpecialAttack">SPECIAL ATTACK</button>
-        <button @click="healButton" :disabled="!canHeal">HEAL</button>
-        <button>SURRENDER</button>
-      </section>
+        <div v-if="!winCondition">
+          <button @click="attackButton">ATTACK</button>
+          <button @click="specialAttackButton" :disabled="disabledSpecialAttack">SPECIAL ATTACK</button>
+          <button @click="healButton" :disabled="!canHeal">HEAL</button>
+          <button @click="surrenderButton">SURRENDER</button>
+        </div>
+        <div v-else>
+          <h2>{{ winCondition }}</h2>
+          <button @click="startNewGame">START NEW GAME</button>
+        </div>     
+       </section>
       <section id="log" class="container">
         <h2>Battle Log</h2>
         <ul>
