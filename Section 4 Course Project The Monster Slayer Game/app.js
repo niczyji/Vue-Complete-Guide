@@ -7,46 +7,46 @@ const app = Vue.createApp({
     return {
       monsterHP: 200,
       playerHP: 200,
+      currentRound: 0,
       battleLog: [],
-      disabledSpecialAttack: true,
-      canHeal: false,
     };
   },
   methods: {
     attackButton() {
+      this.currentRound++;
+
       let damageMonsterHP = getRandomValue(5, 21);
       let damagePlayerHP = getRandomValue(10, 31);
-      this.battleLog.push(`Monster attacks and deals ${damagePlayerHP}`);
-      this.battleLog.push(`Player attacks and deals ${damageMonsterHP}`);
+
       this.monsterHP = this.monsterHP - damageMonsterHP;
       this.playerHP = this.playerHP - damagePlayerHP;
-      this.canHeal = true;
-    },
-    specialAttackButton() {
-      let damageMonsterHP = getRandomValue(15, 51);
-      let damagePlayerHP = getRandomValue(10, 31);
+
       this.battleLog.push(`Monster attacks and deals ${damagePlayerHP}`);
       this.battleLog.push(`Player attacks and deals ${damageMonsterHP}`);
-      this.monsterHP = this.monsterHP - damageMonsterHP;
-      this.disabledSpecialAttack = !this.disabledSpecialAttack;
-      this.canHeal = true;
     },
-    healButton() {
-      if (this.canHeal) {
-        let healAmount = Math.floor(Math.random() * 21);
-        this.playerHP =
-          this.playerHP + healAmount > 200 ? 200 : this.playerHP + healAmount;
-        this.battleLog.push(`Player heals for ${healAmount}`);
-        this.disabledSpecialAttack = !this.disabledSpecialAttack;
-        this.canHeal = false;
-      }
+    specialAttackButton() {
+      this.currentRound++;
+
+      let damageMonsterHP = getRandomValue(15, 51);
+      let damagePlayerHP = getRandomValue(10, 31);
+
+      this.monsterHP = this.monsterHP - damageMonsterHP;
+
+      this.battleLog.push(`Monster attacks and deals ${damagePlayerHP}`);
+      this.battleLog.push(`Player attacks and deals ${damageMonsterHP}`);
+    },
+    healPlayerButton() {
+      let healAmount = getRandomValue(15, 25);
+
+      this.playerHP =
+        this.playerHP + healAmount > 200 ? 200 : this.playerHP + healAmount;
+
+      this.battleLog.push(`Player heals for ${healAmount}`);
     },
     startNewGame() {
       this.monsterHP = 200;
       this.playerHP = 200;
       this.battleLog = [];
-      this.disabledSpecialAttack = true;
-      this.canHeal = false;
     },
   },
   computed: {
@@ -55,6 +55,9 @@ const app = Vue.createApp({
     },
     playerBarStyles() {
       return { width: this.playerHealthBarWidth + "%" };
+    },
+    mayUseSpacialAttack() {
+      return this.currentRound % 3 !== 0;
     },
     monsterHealthBarWidth() {
       return this.monsterHP < 1 ? "0" : (this.monsterHP / 200) * 100;

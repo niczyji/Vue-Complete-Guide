@@ -32,22 +32,22 @@
       <section id="controls">
         <div v-if="!winCondition">
           <button @click="attackButton">ATTACK</button>
-          <button @click="specialAttackButton" :disabled="disabledSpecialAttack">SPECIAL ATTACK</button>
-          <button @click="healButton" :disabled="!canHeal">HEAL</button>
+          <button @click="specialAttackButton" :disabled="mayUseSpacialAttack">SPECIAL ATTACK</button>
+          <button @click="healPlayerButton" :disabled="mayUseSpacialAttack">HEAL</button>
           <button @click="surrenderButton">SURRENDER</button>
         </div>
         <div v-else>
           <h2>{{ winCondition }}</h2>
           <button @click="startNewGame">START NEW GAME</button>
         </div>     
-       </section>
+      </section>
       <section id="log" class="container">
         <h2>Battle Log</h2>
         <ul>
           <li v-for="logEntry in battleLog">
             {{ logEntry }}
           </li>    
-         </section>
+      </section>
     </div>
   </body>
 </html>
