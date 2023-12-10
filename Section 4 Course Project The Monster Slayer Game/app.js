@@ -51,16 +51,16 @@ const app = Vue.createApp({
   },
   computed: {
     monsterBarStyles() {
-      return { width: monsterHealthBarWidth };
+      return { width: this.monsterHealthBarWidth + "%" };
     },
     playerBarStyles() {
-      return { width: playerHealthBarWidth };
+      return { width: this.playerHealthBarWidth + "%" };
     },
     monsterHealthBarWidth() {
-      return this.monsterHP < 1 ? "0%" : (this.monsterHP / 200) * 100 + "%";
+      return this.monsterHP < 1 ? "0" : (this.monsterHP / 200) * 100;
     },
     playerHealthBarWidth() {
-      return this.playerHP < 1 ? "0%" : (this.playerHP / 200) * 100 + "%";
+      return this.playerHP < 1 ? "0" : (this.playerHP / 200) * 100;
     },
     winCondition() {
       if (this.monsterHP <= 0) {
