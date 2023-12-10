@@ -15,12 +15,12 @@ const app = Vue.createApp({
   },
   methods: {
     attackMonster() {
-      const damage = getRandomValue(5, 21);
+      const damage = getRandomValue(5, 12);
       this.monsterHP = Math.max(this.monsterHP - damage, 0);
       this.battleLog.push(`Player attacks and deals ${damage}`);
     },
     attackPlayer() {
-      const damage = getRandomValue(10, 31);
+      const damage = getRandomValue(8, 31);
       this.playerHP = Math.max(this.playerHP - damage, 0);
       this.battleLog.push(`Monster attacks and deals ${damage}`);
     },
@@ -31,7 +31,7 @@ const app = Vue.createApp({
     },
     specialAttackButton() {
       this.currentRound++;
-      const damage = getRandomValue(15, 51);
+      const damage = getRandomValue(10, 25);
       this.monsterHP = Math.max(this.monsterHP - damage, 0);
       this.battleLog.push(
         `Player performs a special attack and deals ${damage}`
@@ -40,7 +40,7 @@ const app = Vue.createApp({
     },
     healPlayerButton() {
       this.currentRound++;
-      const healAmount = getRandomValue(15, 25);
+      const healAmount = getRandomValue(8, 20);
       this.playerHP = Math.min(this.playerHP + healAmount, MAX_HP);
       this.battleLog.push(`Player heals for ${healAmount}`);
       this.attackPlayer();
@@ -60,8 +60,13 @@ const app = Vue.createApp({
       return { width: (this.playerHP / MAX_HP) * 100 + "%" };
     },
     winCondition() {
-      if (this.monsterHP <= 0) return "Player Wins!";
-      if (this.playerHP <= 0) return "Monster Wins!";
+      if (this.monsterHP <= 0 && this.playerHP <= 0) {
+        return "Even! Both players have 0 HP";
+      } else if (this.monsterHP <= 0) {
+        return "Player Wins!";
+      } else if (this.playerHP <= 0) {
+        return "Monster Wins!";
+      }
       return "";
     },
   },
