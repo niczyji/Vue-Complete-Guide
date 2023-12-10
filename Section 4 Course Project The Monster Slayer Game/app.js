@@ -52,13 +52,7 @@ const app = Vue.createApp({
       this.battleLog = [];
     },
   },
-  computed: {
-    monsterBarStyles() {
-      return { width: (this.monsterHP / MAX_HP) * 100 + "%" };
-    },
-    playerBarStyles() {
-      return { width: (this.playerHP / MAX_HP) * 100 + "%" };
-    },
+  watch: {
     winCondition() {
       if (this.monsterHP <= 0 && this.playerHP <= 0) {
         return "Even! Both players have 0 HP";
@@ -72,10 +66,10 @@ const app = Vue.createApp({
   },
   computed: {
     monsterBarStyles() {
-      return { width: this.monsterHealthBarWidth + "%" };
+      return { width: (this.monsterHP / MAX_HP) * 100 + "%" };
     },
     playerBarStyles() {
-      return { width: this.playerHealthBarWidth + "%" };
+      return { width: (this.playerHP / MAX_HP) * 100 + "%" };
     },
     mayUseSpacialAttack() {
       return this.currentRound % 3 !== 0;
@@ -85,11 +79,6 @@ const app = Vue.createApp({
     },
     playerHealthBarWidth() {
       return this.playerHP < 1 ? "0" : (this.playerHP / MAX_HP) * 100;
-    },
-    winCondition() {
-      if (this.monsterHP <= 0) return "Player Wins!";
-      if (this.playerHP <= 0) return "Monster Wins!";
-      return "";
     },
   },
 });

@@ -29,17 +29,18 @@
           <div class="healthbar__value" v-bind:style="playerBarStyles"></div>
         </div>
       </section>
+      <section class="container" >
+        <div v-if="winCondition">
+          <h2>Game Over!</h2>
+          <h3>{{ winCondition }}</h3>
+          <button @click="startNewGame">START NEW GAME</button>
+        </div>
+      </section>
       <section id="controls">
-        <div v-if="!winCondition">
           <button @click="attackButton">ATTACK</button>
           <button @click="specialAttackButton" :disabled="mayUseSpacialAttack">SPECIAL ATTACK</button>
           <button @click="healPlayerButton" :disabled="mayUseSpacialAttack">HEAL</button>
           <button @click="surrenderButton">SURRENDER</button>
-        </div>
-        <div v-else>
-          <h2>{{ winCondition }}</h2>
-          <button @click="startNewGame">START NEW GAME</button>
-        </div>     
       </section>
       <section id="log" class="container">
         <h2>Battle Log</h2>
