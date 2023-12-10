@@ -23,8 +23,8 @@ const app = Vue.createApp({
       this.canHeal = true;
     },
     specialAttackButton() {
-      let damageMonsterHP = getRandomValue(5, 31);
-      let damagePlayerHP = getRandomValue(20, 51);
+      let damageMonsterHP = getRandomValue(15, 51);
+      let damagePlayerHP = getRandomValue(10, 31);
       this.battleLog.push(`Monster attacks and deals ${damagePlayerHP}`);
       this.battleLog.push(`Player attacks and deals ${damageMonsterHP}`);
       this.monsterHP = this.monsterHP - damageMonsterHP;
