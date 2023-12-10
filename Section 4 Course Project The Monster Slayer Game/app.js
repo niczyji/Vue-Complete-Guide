@@ -14,45 +14,55 @@ const app = Vue.createApp({
     };
   },
   methods: {
+    attackMonster() {
+      const damage = getRandomValue(5, 21);
+      this.monsterHP = Math.max(this.monsterHP - damage, 0);
+      this.battleLog.push(`Player attacks and deals ${damage}`);
+    },
+    attackPlayer() {
+      const damage = getRandomValue(10, 31);
+      this.playerHP = Math.max(this.playerHP - damage, 0);
+      this.battleLog.push(`Monster attacks and deals ${damage}`);
+    },
     attackButton() {
       this.currentRound++;
-
-      let damageMonsterHP = getRandomValue(5, 21);
-      let damagePlayerHP = getRandomValue(10, 31);
-
-      this.monsterHP = this.monsterHP - damageMonsterHP;
-      this.playerHP = this.playerHP - damagePlayerHP;
-
-      this.battleLog.push(`Monster attacks and deals ${damagePlayerHP}`);
-      this.battleLog.push(`Player attacks and deals ${damageMonsterHP}`);
+      this.attackMonster();
+      this.attackPlayer();
     },
     specialAttackButton() {
       this.currentRound++;
-
-      let damageMonsterHP = getRandomValue(15, 51);
-      let damagePlayerHP = getRandomValue(10, 31);
-
-      this.monsterHP = this.monsterHP - damageMonsterHP;
-
-      this.battleLog.push(`Monster attacks and deals ${damagePlayerHP}`);
-      this.battleLog.push(`Player attacks and deals ${damageMonsterHP}`);
+      const damage = getRandomValue(15, 51);
+      this.monsterHP = Math.max(this.monsterHP - damage, 0);
+      this.battleLog.push(
+        `Player performs a special attack and deals ${damage}`
+      );
+      this.attackPlayer();
     },
     healPlayerButton() {
       this.currentRound++;
-
-      let healAmount = getRandomValue(15, 25);
-
-      this.playerHP =
-        this.playerHP + healAmount > MAX_HP
-          ? MAX_HP
-          : this.playerHP + healAmount;
-
+      const healAmount = getRandomValue(15, 25);
+      this.playerHP = Math.min(this.playerHP + healAmount, MAX_HP);
       this.battleLog.push(`Player heals for ${healAmount}`);
+      this.attackPlayer();
     },
     startNewGame() {
       this.monsterHP = MAX_HP;
       this.playerHP = MAX_HP;
+      this.currentRound = 0;
       this.battleLog = [];
+    },
+  },
+  computed: {
+    monsterBarStyles() {
+      return { width: (this.monsterHP / MAX_HP) * 100 + "%" };
+    },
+    playerBarStyles() {
+      return { width: (this.playerHP / MAX_HP) * 100 + "%" };
+    },
+    winCondition() {
+      if (this.monsterHP <= 0) return "Player Wins!";
+      if (this.playerHP <= 0) return "Monster Wins!";
+      return "";
     },
   },
   computed: {
