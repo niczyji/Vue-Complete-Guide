@@ -1,3 +1,7 @@
+function getRandomValue(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 const app = Vue.createApp({
   data() {
     return {
@@ -10,8 +14,8 @@ const app = Vue.createApp({
   },
   methods: {
     attackButton() {
-      let damageMonsterHP = Math.floor(Math.random() * (21 - 5)) + 5;
-      let damagePlayerHP = Math.floor(Math.random() * (21 - 5)) + 5;
+      let damageMonsterHP = getRandomValue(5, 21);
+      let damagePlayerHP = getRandomValue(10, 31);
       this.battleLog.push(`Monster attacks and deals ${damagePlayerHP}`);
       this.battleLog.push(`Player attacks and deals ${damageMonsterHP}`);
       this.monsterHP = this.monsterHP - damageMonsterHP;
@@ -19,8 +23,8 @@ const app = Vue.createApp({
       this.canHeal = true;
     },
     specialAttackButton() {
-      let damageMonsterHP = Math.floor(Math.random() * 21);
-      let damagePlayerHP = Math.floor(Math.random() * 41);
+      let damageMonsterHP = getRandomValue(5, 31);
+      let damagePlayerHP = getRandomValue(20, 51);
       this.battleLog.push(`Monster attacks and deals ${damagePlayerHP}`);
       this.battleLog.push(`Player attacks and deals ${damageMonsterHP}`);
       this.monsterHP = this.monsterHP - damageMonsterHP;
@@ -46,6 +50,12 @@ const app = Vue.createApp({
     },
   },
   computed: {
+    monsterBarStyles() {
+      return { width: monsterHealthBarWidth };
+    },
+    playerBarStyles() {
+      return { width: playerHealthBarWidth };
+    },
     monsterHealthBarWidth() {
       return this.monsterHP < 1 ? "0%" : (this.monsterHP / 200) * 100 + "%";
     },
