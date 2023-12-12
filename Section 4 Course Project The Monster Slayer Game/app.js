@@ -11,6 +11,7 @@ const app = Vue.createApp({
       playerHP: MAX_HP,
       currentRound: 0,
       battleLog: [],
+      winner: null,
     };
   },
   methods: {
@@ -50,18 +51,23 @@ const app = Vue.createApp({
       this.playerHP = MAX_HP;
       this.currentRound = 0;
       this.battleLog = [];
+      this.winner = null;
     },
   },
   watch: {
-    winCondition() {
-      if (this.monsterHP <= 0 && this.playerHP <= 0) {
-        return "Even! Both players have 0 HP";
-      } else if (this.monsterHP <= 0) {
-        return "Player Wins!";
-      } else if (this.playerHP <= 0) {
-        return "Monster Wins!";
+    playerHP(value) {
+      if (value <= 0 && this.monsterHP <= 0) {
+        this.winner = "draw";
+      } else if (value <= 0) {
+        this.winner = "monster";
       }
-      return "";
+    },
+    monsterHP(value) {
+      if (value <= 0 && this.playerHP <= 0) {
+        this.winner = "draw";
+      } else if (value <= 0) {
+        this.winner = "player";
+      }
     },
   },
   computed: {
