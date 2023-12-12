@@ -53,6 +53,9 @@ const app = Vue.createApp({
       this.battleLog = [];
       this.winner = null;
     },
+    surrenderButton() {
+      this.winner = "monster";
+    },
   },
   watch: {
     playerHP(value) {
