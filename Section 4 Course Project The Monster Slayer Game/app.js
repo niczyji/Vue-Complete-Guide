@@ -18,12 +18,12 @@ const app = Vue.createApp({
     attackMonster() {
       const damage = getRandomValue(5, 12);
       this.monsterHP = Math.max(this.monsterHP - damage, 0);
-      this.battleLog.push(`Player attacks and deals ${damage}`);
+      this.addLogMessage("player", "attack", attackValue);
     },
     attackPlayer() {
       const damage = getRandomValue(8, 31);
       this.playerHP = Math.max(this.playerHP - damage, 0);
-      this.battleLog.push(`Monster attacks and deals ${damage}`);
+      this.addLogMessage("monster", "attack", attackValue);
     },
     attackButton() {
       this.currentRound++;
@@ -34,16 +34,14 @@ const app = Vue.createApp({
       this.currentRound++;
       const damage = getRandomValue(10, 25);
       this.monsterHP = Math.max(this.monsterHP - damage, 0);
-      this.battleLog.push(
-        `Player performs a special attack and deals ${damage}`
-      );
+      this.addLogMessage("player", "attack", attackValue);
       this.attackPlayer();
     },
     healPlayerButton() {
       this.currentRound++;
       const healAmount = getRandomValue(8, 20);
       this.playerHP = Math.min(this.playerHP + healAmount, MAX_HP);
-      this.battleLog.push(`Player heals for ${healAmount}`);
+      this.addLogMessage("player", "heal", healValue);
       this.attackPlayer();
     },
     startNewGame() {
@@ -55,6 +53,13 @@ const app = Vue.createApp({
     },
     surrenderButton() {
       this.winner = "monster";
+    },
+    addLogMessage(who, what, value) {
+      this.logMessages.unshift({
+        actionBy: who,
+        actionType: what,
+        actionValue: value,
+      });
     },
   },
   watch: {
