@@ -23,12 +23,15 @@ const data = {
 
 const handler = {
   set(target, key, value) {
-    console.log(target);
-    console.log(key);
-    console.log(value);
+    if (key === "message") {
+      target.longMessage = value + " World";
+    }
+    target.message = value;
   },
 };
 
 const proxy = new Proxy(data, handler);
 
 proxy.message = "Helllooo!!!";
+
+console.log(proxy.longMessage);
