@@ -17,6 +17,16 @@ const app = Vue.createApp({
 
 app.mount("#app");
 
+const app2 = Vue.createApp({
+  data() {
+    return {
+      favoriteMeal: "Burger",
+    };
+  },
+});
+
+app2.mount("#app2");
+
 const data = {
   message: "Hello!",
 };
