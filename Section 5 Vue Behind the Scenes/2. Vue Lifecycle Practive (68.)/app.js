@@ -1,8 +1,8 @@
 const app = Vue.createApp({
   data() {
     return {
-      currentUserInput: '',
-      message: 'Vue is great!',
+      currentUserInput: "",
+      message: "Vue is great!",
     };
   },
   methods: {
@@ -16,9 +16,9 @@ const app = Vue.createApp({
     },
   },
   beforeCreate() {
-    console.log('beforeCreate()');
+    console.log("beforeCreate()");
   },
-  created() {
+  /*   created() {
     console.log('created()');
   },
   beforeMount() {
@@ -38,10 +38,10 @@ const app = Vue.createApp({
   },
   unmounted() {
     console.log('unmounted()');
-  },
+  }, */
 });
 
-app.mount('#app');
+app.mount("#app");
 
 setTimeout(function () {
   app.unmount();
@@ -53,24 +53,24 @@ const app2 = Vue.createApp({
   `,
   data() {
     return {
-      favoriteMeal: 'Pizza',
+      favoriteMeal: "Pizza",
     };
   },
 });
 
-app2.mount('#app2');
+app2.mount("#app2");
 
 // ....
 
 const data = {
-  message: 'Hello!',
-  longMessage: 'Hello! World!',
+  message: "Hello!",
+  longMessage: "Hello! World!",
 };
 
 const handler = {
   set(target, key, value) {
-    if (key === 'message') {
-      target.longMessage = value + ' World!';
+    if (key === "message") {
+      target.longMessage = value + " World!";
     }
     target.message = value;
   },
@@ -78,6 +78,6 @@ const handler = {
 
 const proxy = new Proxy(data, handler);
 
-proxy.message = 'Hello!!!!';
+proxy.message = "Hello!!!!";
 
 // console.log(proxy.longMessage);
