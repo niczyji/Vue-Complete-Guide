@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <h1>Hello, Vue!</h1>
-    <p>Welcome to your Vue.js app!</p>
   </div>
 </template>
 
