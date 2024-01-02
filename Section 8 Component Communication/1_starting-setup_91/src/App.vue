@@ -3,7 +3,7 @@
     <header>
       <h1>My Friends</h1>
     </header>
-    <ul>
+    <ul class="color-friends">
       <friend-contact></friend-contact>
       <friend-contact></friend-contact>
     </ul>
