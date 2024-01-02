@@ -4,8 +4,8 @@
       <h1>My Friends</h1>
     </header>
     <ul class="color-friends">
-      <friend-contact></friend-contact>
-      <friend-contact></friend-contact>
+      <friend-contact name="Manuel Lorenz" phone-number="0123 45678 90" email-address="manuel@localhost.com"></friend-contact>
+      <friend-contact name="Julie Jones" phone-number="0987 654421 21" email-address="julie@localhost.com"></friend-contact>
     </ul>
   </section>
 </template>
@@ -14,7 +14,7 @@
 export default {
   data() {
     return {
-      friends: [
+/*       friends: [
         {
           id: "manuel",
           name: "Manuel Lorenz",
@@ -27,7 +27,7 @@ export default {
           phone: "0987 654421 21",
           email: "julie@localhost.com",
         },
-      ],
+      ], */
     };
   },
 };
