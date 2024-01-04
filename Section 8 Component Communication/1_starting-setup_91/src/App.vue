@@ -10,6 +10,7 @@
         :name="friend.name"
         :phone-number="friend.phone"
         :email-address="friend.email"
+        :if-favorite="true"
       ></friend-contact>
     </ul>
   </section>
