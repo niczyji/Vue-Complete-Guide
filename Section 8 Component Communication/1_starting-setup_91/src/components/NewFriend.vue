@@ -1,16 +1,16 @@
 <template lang="">
-  <form action="">
+  <form @submit.prevent="submitData">
     <div>
-      <label for="name">Name</label>
-      <input type="text" />
+      <label>Name</label>
+      <input type="name" v-model="enteredName" />
     </div>
     <div>
-      <label for="phone">Phone</label>
-      <input type="text" />
+      <label>Phone</label>
+      <input type="tel" v-model="enteredPhone" />
     </div>
     <div>
-      <label for="email">E-mail</label>
-      <input type="text" />
+      <label>E-mail</label>
+      <input type="email" v-model="enteredEmail" />
     </div>
     <div>
       <button>Add Contact</button>
@@ -18,6 +18,25 @@
   </form>
 </template>
 <script>
-export default {};
+export default {
+  emits: ["add-contact"],
+  data() {
+    return {
+      enteredName: "",
+      enteredPhone: "",
+      enteredEmail: "",
+    };
+  },
+  methods: {
+    submitData() {
+      this.$emit(
+        "add-contact",
+        this.enteredName,
+        this.enteredPhone,
+        this.enteredEmail
+      );
+    },
+  },
+};
 </script>
 <style lang=""></style>
