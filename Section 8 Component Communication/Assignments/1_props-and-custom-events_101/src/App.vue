@@ -1,7 +1,13 @@
 <template lang="">
   <div>
     <user-data></user-data>
-    <active-user></active-user>
+    <active-user
+      v-for="user in userData"
+      :key="user.id"
+      :name="user.name"
+      :age="user.age"
+    >
+    </active-user>
   </div>
 </template>
 <script>
@@ -11,13 +17,13 @@ export default {
       userData: [
         {
           id: "mika",
-          name: "Mika G",
-          age: 32,
+          name: "Mika",
+          age: "32",
         },
         {
           id: "masa",
-          name: "Masa M",
-          age: 32,
+          name: "Masa",
+          age: "32",
         },
       ],
     };

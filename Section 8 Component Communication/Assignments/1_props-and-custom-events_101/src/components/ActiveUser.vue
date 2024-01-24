@@ -1,16 +1,29 @@
 <template lang="">
   <div>
     <h2>
-      <!-- {{ user.username }} -->
-      Username
+      {{ name }}
     </h2>
     <h3>
-      <!-- {{ user.age }} -->
-      Age
+      {{ age }}
     </h3>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  props: {
+    id: {
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    age: {
+      type: String,
+      required: true,
+    },
+  },
+};
 </script>
 <style lang=""></style>
